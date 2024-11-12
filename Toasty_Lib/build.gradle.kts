@@ -42,6 +42,20 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 }
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                from (components["release"])
+                groupId = "com.toasty_lib"
+                artifactId = "Toasty_Lib"
+                version = "1.3"
+            }
+        }
+    }
+}
+/*
 publishing {
     publications {
         register<MavenPublication>("Toasty_Lib") {
@@ -50,4 +64,4 @@ publishing {
             }
         }
     }
-}
+}*/
