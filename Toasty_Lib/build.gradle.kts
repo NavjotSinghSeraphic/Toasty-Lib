@@ -10,8 +10,8 @@ afterEvaluate {
         publications {
             register<MavenPublication>("release") {
                 groupId = "com.toasty_lib"
-                artifactId = "Toasty Lib"
-                version = "1.0.1"
+                artifactId = "toasty_lib"
+                version = "1.0.2"
 
                 from(components["release"])
             }
