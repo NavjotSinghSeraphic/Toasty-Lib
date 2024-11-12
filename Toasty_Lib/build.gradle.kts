@@ -1,9 +1,23 @@
 plugins {
     id("com.android.library")
+    id("kotlin-android")
     id("org.jetbrains.kotlin.android")
     id("maven-publish")
 }
 
+afterEvaluate {
+    publishing {
+        publications {
+            register<MavenPublication>("release") {
+                groupId = "com.toasty_lib"
+                artifactId = "Toasty Lib"
+                version = "1.0.1"
+
+                from(components["release"])
+            }
+        }
+    }
+}
 android {
     namespace = "com.toasty_lib"
     compileSdk = 34
@@ -25,11 +39,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 }
 
@@ -43,18 +58,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            create<MavenPublication>("maven") {
-                from (components["release"])
-                groupId = "com.toasty_lib"
-                artifactId = "Toasty_Lib"
-                version = "1.3"
-            }
-        }
-    }
-}
+
 /*
 publishing {
     publications {
